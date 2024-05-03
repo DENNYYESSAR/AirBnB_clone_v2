@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 """
-Fabric script to genereate tgz archive
-execute: fab -f 1-pack_web_static.py do_pack
+Fabric script that generates a .tgz archive from the contents of the
+web_static folder
 """
 
-from datetime import datetime
 from fabric.api import *
-
+from datetime import datetime
 
 def do_pack():
     """
@@ -21,7 +20,3 @@ def do_pack():
         return archive
     else:
         return None
-
-
-if __name__ == "__main__":
-    do_pack()
