@@ -7,6 +7,7 @@ web_static folder
 from fabric.api import *
 from datetime import datetime
 
+
 def do_pack():
     """
     making an archive on web_static folder
