@@ -22,6 +22,7 @@ class State(BaseModel, Base):
     if STORAGE_TYPE != 'db':
         name = ''
         cities = []
+
         @property
         def cities(self):
             """Get a list of city instances with state_id equals to the current
