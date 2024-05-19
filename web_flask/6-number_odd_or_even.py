@@ -66,7 +66,12 @@ def number_odd_or_even(n):
     Route that returns an HTML page with 'Number: n is even|odd' in H1 tag,
     only if n is an integer.
     """
-    return render_template('6-number_odd_or_even.html', number=n)
+    even_or_odd = "even" if n % 2 == 0 else "odd"
+    values = {
+        "number": n,
+        "even_or_odd": even_or_odd
+    }
+    return render_template('6-number_odd_or_even.html', values=values)
 
 
 if __name__ == "__main__":
