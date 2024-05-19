@@ -7,6 +7,9 @@ import models
 from models.city import City
 import shlex
 from sqlalchemy.ext.declarative import declarative_base
+from os import getenv
+
+STORAGE_TYPE = getenv("HBNB_TYPE_STORAGE")
 
 
 class State(BaseModel, Base):
@@ -16,17 +19,16 @@ class State(BaseModel, Base):
     cities = relationship("City", cascade='all, delete, delete-orphan',
                           backref="state")
 
-    @property
-    def cities(self):
-        var = models.storage.all()
-        lista = []
-        result = []
-        for key in var:
-            city = key.replace('.', ' ')
-            city = shlex.split(city)
-            if (city[0] == 'City'):
-                lista.append(var[key])
-        for elem in lista:
-            if (elem.state_id == self.id):
-                result.append(elem)
-        return (result)
+    if STORAGE_TYPE != 'db':
+        name = ''
+        cities = []
+        @property
+        def cities(self):
+            """Get a list of city instances with state_id equals to the current
+            state.id.
+            """
+            city_list = []
+            for city in models.storage.all(City).values():
+                if city.state_id == self.id:
+                    city_list.append(city)
+            return city_list
