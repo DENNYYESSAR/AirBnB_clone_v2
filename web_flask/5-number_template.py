@@ -44,7 +44,7 @@ def python_text(text="is cool"):
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def iamnumber(n):
+def number(n):
     """
     Route that returns 'n is a number' only if n is an integer.
     """
@@ -52,7 +52,7 @@ def iamnumber(n):
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def numbersandtemplate(n):
+def number_template(n):
     """
     Route that returns an HTML page with 'Number: n' in H1 tag,
     only if n is an integer.
